@@ -1,0 +1,4 @@
+vega-datasets
+altair
+streamlit
+pandas
