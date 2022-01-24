@@ -65,7 +65,12 @@ with col3:
         "Vertical offset", min_value=-30, max_value=30, step=1, value=-10
     )
 
-# Add annotations
+# Original time series chart. Omitted `get_chart` for clarity
+source = data.stocks()
+source = source[source.date.gt("2004-01-01")]
+chart = get_chart(source)
+
+# Input annotations
 ANNOTATIONS = [
     ("Mar 01, 2008", "Pretty good day for GOOG"),
     ("Dec 01, 2007", "Something's going wrong for GOOG & AAPL"),
@@ -73,15 +78,10 @@ ANNOTATIONS = [
     ("Dec 01, 2009", "Small crash for GOOG after..."),
 ]
 
-# Original time series chart. Omitted `get_chart` for clarity
-source = data.stocks()
-source = source[source.date.gt("2004-01-01")]
-chart = get_chart(source)
-
+# Create a chart with annotations
 annotations_df = pd.DataFrame(ANNOTATIONS, columns=["date", "event"])
 annotations_df.date = pd.to_datetime(annotations_df.date)
 annotations_df["y"] = 0
-
 annotation_layer = (
     alt.Chart(annotations_df)
     .mark_text(size=15, text=ticker, dx=ticker_dx, dy=ticker_dy, align="center")
@@ -93,6 +93,7 @@ annotation_layer = (
     .interactive()
 )
 
+# Display both charts together
 st.altair_chart((chart + annotation_layer).interactive(), use_container_width=True)
 
 st.write("## Code")
@@ -103,7 +104,12 @@ import pandas as pd
 import streamlit as st
 from vega_datasets import data
 
-# Add annotations
+# Original time series chart. Omitted `get_chart` for clarity
+source = data.stocks()
+source = source[source.date.gt("2004-01-01")]
+chart = get_chart(source)
+
+# Input annotations
 ANNOTATIONS = [
     ("Mar 01, 2008", "Pretty good day for GOOG"),
     ("Dec 01, 2007", "Something's going wrong for GOOG & AAPL"),
@@ -111,15 +117,10 @@ ANNOTATIONS = [
     ("Dec 01, 2009", "Small crash for GOOG after..."),
 ]
 
-# Original time series chart. Omitted `get_chart` for clarity
-source = data.stocks()
-source = source[source.date.gt("2004-01-01")]
-chart = get_chart(source)
-
+# Create a chart with annotations
 annotations_df = pd.DataFrame(ANNOTATIONS, columns=["date", "event"])
 annotations_df.date = pd.to_datetime(annotations_df.date)
 annotations_df["y"] = 0
-
 annotation_layer = (
     alt.Chart(annotations_df)
     .mark_text(size=15, text=ticker, dx=ticker_dx, dy=ticker_dy, align="center")
@@ -131,6 +132,7 @@ annotation_layer = (
     .interactive()
 )
 
+# Display both charts together
 st.altair_chart((chart + annotation_layer).interactive(), use_container_width=True)
 
 """,
