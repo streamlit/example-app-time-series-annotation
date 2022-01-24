@@ -98,7 +98,7 @@ st.altair_chart((chart + annotation_layer).interactive(), use_container_width=Tr
 
 st.write("## Code")
 st.code(
-    """
+    f"""
 import altair as alt
 import pandas as pd
 import streamlit as st
@@ -123,7 +123,7 @@ annotations_df.date = pd.to_datetime(annotations_df.date)
 annotations_df["y"] = 0
 annotation_layer = (
     alt.Chart(annotations_df)
-    .mark_text(size=15, text=ticker, dx=ticker_dx, dy=ticker_dy, align="center")
+    .mark_text(size=15, text="{ticker}", dx={ticker_dx}, dy={ticker_dy}, align="center")
     .encode(
         x="date:T",
         y=alt.Y("y:Q"),
