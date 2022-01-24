@@ -3,7 +3,9 @@ import pandas as pd
 import streamlit as st
 from vega_datasets import data
 
-st.set_page_config(title="Time series annotations", page_icon="⬇", layout="centered")
+st.set_page_config(
+    page_title="Time series annotations", page_icon="⬇", layout="centered"
+)
 
 
 def get_chart(data):
