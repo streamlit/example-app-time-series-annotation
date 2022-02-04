@@ -8,6 +8,14 @@ st.set_page_config(
 )
 
 
+@st.experimental_singleton()
+def get_data():
+    source = data.stocks()
+    source = source[source.date.gt("2004-01-01")]
+    return source
+
+
+@st.experimental_memo(ttl=60 * 60 * 24)
 def get_chart(data):
     hover = alt.selection_single(
         fields=["date"],
@@ -66,8 +74,7 @@ with col3:
     )
 
 # Original time series chart. Omitted `get_chart` for clarity
-source = data.stocks()
-source = source[source.date.gt("2004-01-01")]
+source = get_data()
 chart = get_chart(source)
 
 # Input annotations
@@ -97,6 +104,11 @@ annotation_layer = (
 st.altair_chart((chart + annotation_layer).interactive(), use_container_width=True)
 
 st.write("## Code")
+
+st.write(
+    "See more in our public [GitHub repository](https://github.com/streamlit/example-app-time-series-annotation)"
+)
+
 st.code(
     f"""
 import altair as alt
@@ -104,9 +116,15 @@ import pandas as pd
 import streamlit as st
 from vega_datasets import data
 
+@st.experimental_singleton()
+def get_data():
+    source = data.stocks()
+    source = source[source.date.gt("2004-01-01")]
+    return source
+
+source = get_data()
+
 # Original time series chart. Omitted `get_chart` for clarity
-source = data.stocks()
-source = source[source.date.gt("2004-01-01")]
 chart = get_chart(source)
 
 # Input annotations
