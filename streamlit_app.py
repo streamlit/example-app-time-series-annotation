@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 
-@st.experimental_singleton()
+@st.experimental_memo
 def get_data():
     source = data.stocks()
     source = source[source.date.gt("2004-01-01")]
@@ -116,7 +116,7 @@ import pandas as pd
 import streamlit as st
 from vega_datasets import data
 
-@st.experimental_singleton()
+@st.experimental_memo
 def get_data():
     source = data.stocks()
     source = source[source.date.gt("2004-01-01")]
