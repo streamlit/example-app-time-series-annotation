@@ -1,5 +1,5 @@
 vega-datasets
 altair
-streamlit==1.5.0
+streamlit==1.11.1
 pandas
 click==8
