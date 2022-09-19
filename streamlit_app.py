@@ -30,8 +30,8 @@ def get_chart(data):
         alt.Chart(data, height=500, title="Evolution of stock prices")
         .mark_line()
         .encode(
-            x="date",
-            y="price",
+            x=alt.X("date", title="Date"),
+            y=alt.Y("price", title="Price"),
             color="symbol",
         )
     )
