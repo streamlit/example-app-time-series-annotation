@@ -4,7 +4,7 @@
 
 Learn how to add annotations in your time series visualisations! They are crucial to help your viewers gain more context on the patterns in your data.
 
-<img src="https://user-images.githubusercontent.com/7164864/152408715-6538a00e-8327-46b9-b4fc-9246135f252f.png" width="400px"> </img>
+<img src="https://user-images.githubusercontent.com/7164864/191277048-c1078ae1-4975-4d9b-8275-823b45da53a5.png" width="600px"> </img>
 
 ### Questions? Comments?
 
