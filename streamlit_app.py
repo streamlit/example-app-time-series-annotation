@@ -3,8 +3,6 @@ import pandas as pd
 import streamlit as st
 from vega_datasets import data
 
-alt.themes.enable("streamlit")
-
 st.set_page_config(
     page_title="Time series annotations", page_icon="⬇", layout="centered"
 )
@@ -92,9 +90,7 @@ annotations_df.date = pd.to_datetime(annotations_df.date)
 annotations_df["y"] = 0
 annotation_layer = (
     alt.Chart(annotations_df)
-    .mark_text(
-        size=15, text=ticker, dx=ticker_dx, dy=ticker_dy, align="center"
-    )
+    .mark_text(size=15, text=ticker, dx=ticker_dx, dy=ticker_dy, align="center")
     .encode(
         x="date:T",
         y=alt.Y("y:Q"),
@@ -104,9 +100,7 @@ annotation_layer = (
 )
 
 # Display both charts together
-st.altair_chart(
-    (chart + annotation_layer).interactive(), use_container_width=True
-)
+st.altair_chart((chart + annotation_layer).interactive(), use_container_width=True)
 
 st.write("## Code")
 
