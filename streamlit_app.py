@@ -116,8 +116,6 @@ import pandas as pd
 import streamlit as st
 from vega_datasets import data
 
-alt.themes.enable("streamlit")
-
 @st.experimental_memo
 def get_data():
     source = data.stocks()
