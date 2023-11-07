@@ -8,14 +8,14 @@ st.set_page_config(
 )
 
 
-@st.experimental_memo
+@st.cache_data
 def get_data():
     source = data.stocks()
     source = source[source.date.gt("2004-01-01")]
     return source
 
 
-@st.experimental_memo(ttl=60 * 60 * 24)
+@st.cache_data(ttl=60 * 60 * 24)
 def get_chart(data):
     hover = alt.selection_single(
         fields=["date"],
@@ -116,7 +116,7 @@ import pandas as pd
 import streamlit as st
 from vega_datasets import data
 
-@st.experimental_memo
+@st.cache_data
 def get_data():
     source = data.stocks()
     source = source[source.date.gt("2004-01-01")]
